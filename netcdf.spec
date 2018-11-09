@@ -4,7 +4,7 @@
 #
 Name     : netcdf
 Version  : 4.6.1
-Release  : 1
+Release  : 2
 URL      : https://github.com/Unidata/netcdf-c/archive/v4.6.1.tar.gz
 Source0  : https://github.com/Unidata/netcdf-c/archive/v4.6.1.tar.gz
 Summary  : NetCDF Client Library for C
@@ -91,7 +91,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1541606963
+export SOURCE_DATE_EPOCH=1541800952
 %configure --disable-static --enable-shared \ \
 --enable-netcdf-4 \ \
 --enable-dap \ \
@@ -110,7 +110,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1541606963
+export SOURCE_DATE_EPOCH=1541800952
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/netcdf
 cp COPYRIGHT %{buildroot}/usr/share/package-licenses/netcdf/COPYRIGHT
@@ -122,8 +122,9 @@ cp COPYRIGHT %{buildroot}/usr/share/package-licenses/netcdf/COPYRIGHT
 
 %files abi
 %defattr(-,root,root,-)
+/usr/share/abi/libbzip2.so.abi
+/usr/share/abi/libmisc.so.abi
 /usr/share/abi/libnetcdf.so.13.1.1.abi
-/usr/share/abi/libnetcdf.so.13.abi
 
 %files bin
 %defattr(-,root,root,-)

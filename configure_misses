@@ -25,5 +25,6 @@ Configure miss: H5Pget_fapl_mpiposix
 Configure miss: H5Pget_fapl_mpio
 Configure miss: H5Pset_all_coll_metadata_ops
 Configure miss: whether parallel io is enabled in hdf5
+Configure miss: whether parallel I/O for classic files is to be enabled
 Configure miss: if libtool needs -no-undefined flag to build shared libraries
 Configure miss: If compilation is for use with JNA
