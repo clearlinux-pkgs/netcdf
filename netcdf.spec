@@ -4,7 +4,7 @@
 #
 Name     : netcdf
 Version  : 4.6.1
-Release  : 2
+Release  : 3
 URL      : https://github.com/Unidata/netcdf-c/archive/v4.6.1.tar.gz
 Source0  : https://github.com/Unidata/netcdf-c/archive/v4.6.1.tar.gz
 Summary  : NetCDF Client Library for C
@@ -27,14 +27,6 @@ This directory contains source code for nctest, an extensive test
 program for the entire netCDF library.  Before compiling the sources in
 this directory, you must have already made the netCDF library from the
 ../src directory.
-
-%package abi
-Summary: abi components for the netcdf package.
-Group: Default
-
-%description abi
-abi components for the netcdf package.
-
 
 %package bin
 Summary: bin components for the netcdf package.
@@ -91,7 +83,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1541800952
+export SOURCE_DATE_EPOCH=1542750469
 %configure --disable-static --enable-shared \ \
 --enable-netcdf-4 \ \
 --enable-dap \ \
@@ -110,7 +102,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1541800952
+export SOURCE_DATE_EPOCH=1542750469
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/netcdf
 cp COPYRIGHT %{buildroot}/usr/share/package-licenses/netcdf/COPYRIGHT
@@ -119,12 +111,6 @@ cp COPYRIGHT %{buildroot}/usr/share/package-licenses/netcdf/COPYRIGHT
 %files
 %defattr(-,root,root,-)
 /usr/lib64/libnetcdf.settings
-
-%files abi
-%defattr(-,root,root,-)
-/usr/share/abi/libbzip2.so.abi
-/usr/share/abi/libmisc.so.abi
-/usr/share/abi/libnetcdf.so.13.1.1.abi
 
 %files bin
 %defattr(-,root,root,-)
