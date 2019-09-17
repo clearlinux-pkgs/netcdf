@@ -4,7 +4,7 @@
 #
 Name     : netcdf
 Version  : 4.6.1
-Release  : 3
+Release  : 4
 URL      : https://github.com/Unidata/netcdf-c/archive/v4.6.1.tar.gz
 Source0  : https://github.com/Unidata/netcdf-c/archive/v4.6.1.tar.gz
 Summary  : NetCDF Client Library for C
@@ -32,7 +32,6 @@ this directory, you must have already made the netCDF library from the
 Summary: bin components for the netcdf package.
 Group: Binaries
 Requires: netcdf-license = %{version}-%{release}
-Requires: netcdf-man = %{version}-%{release}
 
 %description bin
 bin components for the netcdf package.
@@ -44,6 +43,7 @@ Group: Development
 Requires: netcdf-lib = %{version}-%{release}
 Requires: netcdf-bin = %{version}-%{release}
 Provides: netcdf-devel = %{version}-%{release}
+Requires: netcdf = %{version}-%{release}
 
 %description dev
 dev components for the netcdf package.
@@ -82,8 +82,13 @@ man components for the netcdf package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1542750469
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1568689734
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 %configure --disable-static --enable-shared \ \
 --enable-netcdf-4 \ \
 --enable-dap \ \
@@ -95,14 +100,14 @@ export SOURCE_DATE_EPOCH=1542750469
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1542750469
+export SOURCE_DATE_EPOCH=1568689734
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/netcdf
 cp COPYRIGHT %{buildroot}/usr/share/package-licenses/netcdf/COPYRIGHT
@@ -123,7 +128,9 @@ cp COPYRIGHT %{buildroot}/usr/share/package-licenses/netcdf/COPYRIGHT
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/*.h
+/usr/include/netcdf.h
+/usr/include/netcdf_mem.h
+/usr/include/netcdf_meta.h
 /usr/lib64/libbzip2.so
 /usr/lib64/libmisc.so
 /usr/lib64/libnetcdf.so
