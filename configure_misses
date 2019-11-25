@@ -6,6 +6,7 @@ Configure miss: whether to fetch some sample HDF4 files from Unidata ftp site to
 Configure miss: whether we should attempt to install netcdf-fortran (EXPERIMENTAL)
 Configure miss: whether parallel IO tests should be run
 Configure miss: whether netCDF-4 logging is enabled
+Configure miss: whether dap remote testing should be enabled (default on)
 Configure miss: whether dap remote authorization testing should be enabled (default off)
 Configure miss: whether the time-consuming dap tests should be enabled (default off)
 Configure miss: whether to enable strict null-byte header padding when reading (default off)

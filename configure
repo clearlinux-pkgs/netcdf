@@ -1,8 +1,6 @@
---enable-shared \
---enable-netcdf-4 \
---enable-dap \
---enable-ncgen4 \
---enable-extra-example-tests \
---disable-dap-remote-tests \
---with-pic \
+--enable-shared
+--enable-netcdf-4
+--enable-dap
+--disable-dap-remote-tests
+--with-pic
 --disable-doxygen
