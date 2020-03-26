@@ -3,3 +3,5 @@ libcurl.so.4
 libhdf5.so.103
 libhdf5_hl.so.100
 libm.so.6
+libmpi.so.40
+libpthread.so.0

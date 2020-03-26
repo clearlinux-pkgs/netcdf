@@ -1,0 +1,8 @@
+--enable-shared
+--enable-netcdf-4
+--enable-dap
+--disable-dap-remote-tests
+--with-pic
+--disable-doxygen
+--enable-parallel-tests
+--with-mpiexec="mpiexec -x LD_LIBRARY_PATH "

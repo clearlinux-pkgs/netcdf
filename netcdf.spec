@@ -4,7 +4,7 @@
 #
 Name     : netcdf
 Version  : 4.7.3
-Release  : 10
+Release  : 11
 URL      : https://github.com/Unidata/netcdf-c/archive/v4.7.3/netcdf-c-4.7.3.tar.gz
 Source0  : https://github.com/Unidata/netcdf-c/archive/v4.7.3/netcdf-c-4.7.3.tar.gz
 Summary  : NetCDF Client Library for C
@@ -14,11 +14,15 @@ Requires: netcdf-bin = %{version}-%{release}
 Requires: netcdf-lib = %{version}-%{release}
 Requires: netcdf-license = %{version}-%{release}
 Requires: netcdf-man = %{version}-%{release}
+Requires: netcdf-openmpi = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : chrpath
 BuildRequires : curl-dev
 BuildRequires : graphviz
 BuildRequires : hdf5-dev
+BuildRequires : modules
+BuildRequires : openmpi-dev
+BuildRequires : openssh
 BuildRequires : util-linux
 BuildRequires : zlib-dev
 
@@ -43,6 +47,7 @@ Summary: dev components for the netcdf package.
 Group: Development
 Requires: netcdf-lib = %{version}-%{release}
 Requires: netcdf-bin = %{version}-%{release}
+Requires: netcdf-openmpi = %{version}-%{release}
 Provides: netcdf-devel = %{version}-%{release}
 Requires: netcdf = %{version}-%{release}
 
@@ -75,16 +80,27 @@ Group: Default
 man components for the netcdf package.
 
 
+%package openmpi
+Summary: openmpi components for the netcdf package.
+Group: Default
+
+%description openmpi
+openmpi components for the netcdf package.
+
+
 %prep
 %setup -q -n netcdf-c-4.7.3
 cd %{_builddir}/netcdf-c-4.7.3
+pushd ..
+cp -a netcdf-c-4.7.3 build-openmpi
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1574701635
+export SOURCE_DATE_EPOCH=1585259355
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -98,18 +114,51 @@ export CXXFLAGS="$CXXFLAGS -fno-lto "
 --disable-doxygen
 make  %{?_smp_mflags}
 
+pushd ../build-openmpi/
+. /usr/share/defaults/etc/profile.d/modules.sh
+module load openmpi
+export CFLAGS="$CFLAGS -m64 -march=haswell"
+export CXXFLAGS="$CXXFLAGS -m64 -march=haswell"
+export FCFLAGS="$FCFLAGS -m64 -march=haswell"
+export FFLAGS="$FFLAGS -m64 -march=haswell"
+export LDFLAGS="$LDFLAGS -m64 -march=haswell"
+./configure --program-prefix=  --exec-prefix=$MPI_ROOT \
+--libdir=$MPI_LIB --bindir=$MPI_BIN --sbindir=$MPI_BIN --includedir=$MPI_INCLUDE \
+--datarootdir=$MPI_ROOT/share --mandir=$MPI_MAN -exec-prefix=$MPI_ROOT --sysconfdir=$MPI_SYSCONFIG \
+--build=x86_64-generic-linux-gnu --host=x86_64-generic-linux-gnu --target=x86_64-clr-linux-gnu  \
+--disable-static --enable-shared \
+--enable-netcdf-4 \
+--enable-dap \
+--disable-dap-remote-tests \
+--with-pic \
+--disable-doxygen \
+--enable-parallel-tests \
+--with-mpiexec="mpiexec -x LD_LIBRARY_PATH "
+make  %{?_smp_mflags}
+module unload openmpi
+popd
 %check
 export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
+cd ../build-openmpi;
+module load openmpi
+export OMPI_MCA_rmaps_base_oversubscribe=1
+make VERBOSE=1 V=1 %{?_smp_mflags} check
+module unload openmpi
 
 %install
-export SOURCE_DATE_EPOCH=1574701635
+export SOURCE_DATE_EPOCH=1585259355
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/netcdf
 cp %{_builddir}/netcdf-c-4.7.3/COPYRIGHT %{buildroot}/usr/share/package-licenses/netcdf/1b45343da188e7ec176d9443c8c3312798532bfc
+pushd ../build-openmpi/
+module load openmpi
+%make_install_openmpi
+module unload openmpi
+popd
 %make_install
 
 %files
@@ -134,6 +183,17 @@ cp %{_builddir}/netcdf-c-4.7.3/COPYRIGHT %{buildroot}/usr/share/package-licenses
 /usr/include/netcdf_meta.h
 /usr/lib64/libh5bzip2.so
 /usr/lib64/libnetcdf.so
+/usr/lib64/openmpi/include/netcdf.h
+/usr/lib64/openmpi/include/netcdf_aux.h
+/usr/lib64/openmpi/include/netcdf_dispatch.h
+/usr/lib64/openmpi/include/netcdf_filter.h
+/usr/lib64/openmpi/include/netcdf_mem.h
+/usr/lib64/openmpi/include/netcdf_meta.h
+/usr/lib64/openmpi/include/netcdf_par.h
+/usr/lib64/openmpi/lib/libh5bzip2.so
+/usr/lib64/openmpi/lib/libnetcdf.settings
+/usr/lib64/openmpi/lib/libnetcdf.so
+/usr/lib64/openmpi/lib/pkgconfig/netcdf.pc
 /usr/lib64/pkgconfig/netcdf.pc
 /usr/share/man/man3/netcdf.3
 
@@ -152,3 +212,18 @@ cp %{_builddir}/netcdf-c-4.7.3/COPYRIGHT %{buildroot}/usr/share/package-licenses
 /usr/share/man/man1/ncdump.1
 /usr/share/man/man1/ncgen.1
 /usr/share/man/man1/ncgen3.1
+
+%files openmpi
+%defattr(-,root,root,-)
+/usr/lib64/openmpi/bin/nc-config
+/usr/lib64/openmpi/bin/nccopy
+/usr/lib64/openmpi/bin/ncdump
+/usr/lib64/openmpi/bin/ncgen
+/usr/lib64/openmpi/bin/ncgen3
+/usr/lib64/openmpi/lib/libnetcdf.so.15
+/usr/lib64/openmpi/lib/libnetcdf.so.15.2.1
+/usr/lib64/openmpi/share/man/man1/nccopy.1
+/usr/lib64/openmpi/share/man/man1/ncdump.1
+/usr/lib64/openmpi/share/man/man1/ncgen.1
+/usr/lib64/openmpi/share/man/man1/ncgen3.1
+/usr/lib64/openmpi/share/man/man3/netcdf.3

@@ -32,3 +32,33 @@ Configure miss: whether parallel I/O is enabled for netcdf-4
 Configure miss: whether parallel I/O for classic files is to be enabled
 Configure miss: if libtool needs -no-undefined flag to build shared libraries
 Configure miss: If compilation is for use with JNA
+Configure miss: valgrind
+Configure miss: if fsync support is enabled
+Configure miss: if jna bug workaround is enabled
+Configure miss: whether reading of HDF4 SD files is to be enabled
+Configure miss: whether to fetch some sample HDF4 files from Unidata ftp site to test HDF4 reading (requires wget)
+Configure miss: whether we should attempt to install netcdf-fortran (EXPERIMENTAL)
+Configure miss: whether netCDF-4 logging is enabled
+Configure miss: mpicc option to accept ISO C89
+Configure miss: whether dap remote testing should be enabled (default on)
+Configure miss: whether dap remote authorization testing should be enabled (default off)
+Configure miss: whether the time-consuming dap tests should be enabled (default off)
+Configure miss: whether to enable strict null-byte header padding when reading (default off)
+Configure miss: whether FFIO will be used
+Configure miss: whether STDIO will be used
+Configure miss: whether large file (> 2GB) tests should be run
+Configure miss: whether benchmarks should be run
+Configure miss: if mpicc supports -fno-rtti -fno-exceptions
+Configure miss: if mpicc static flag -static works
+Configure miss: whether mmap is enabled for in-memory files
+Configure miss: whether byte range support is enabled
+Configure miss: schar
+Configure miss: uchar
+Configure miss: longlong
+Configure miss: int64
+Configure miss: uint64
+Configure miss: H5Z_SZIP
+Configure miss: whether szlib was used when building HDF5
+Configure miss: whether parallel I/O for classic files is to be enabled
+Configure miss: if libtool needs -no-undefined flag to build shared libraries
+Configure miss: If compilation is for use with JNA
