@@ -36,6 +36,8 @@ Configure miss: uint64
 Configure miss: uint64
 Configure miss: valgrind
 Configure miss: valgrind
+Configure miss: whether AWS S3 SDK library is available
+Configure miss: whether AWS S3 SDK library is available
 Configure miss: whether FFIO will be used
 Configure miss: whether FFIO will be used
 Configure miss: whether STDIO will be used
@@ -46,22 +48,22 @@ Configure miss: whether byte range support is enabled
 Configure miss: whether byte range support is enabled
 Configure miss: whether dap remote authorization testing should be enabled (default off)
 Configure miss: whether dap remote authorization testing should be enabled (default off)
-Configure miss: whether dap remote testing should be enabled (default off)
-Configure miss: whether dap remote testing should be enabled (default off)
+Configure miss: whether dap remote testing should be enabled
+Configure miss: whether dap remote testing should be enabled
 Configure miss: whether large file (> 2GB) tests should be run
 Configure miss: whether large file (> 2GB) tests should be run
 Configure miss: whether libzip library is available
 Configure miss: whether libzip library is available
 Configure miss: whether mmap is enabled for in-memory files
 Configure miss: whether mmap is enabled for in-memory files
+Configure miss: whether nczarr zip support is enabled
+Configure miss: whether nczarr zip support is enabled
 Configure miss: whether netCDF-4 logging is enabled
 Configure miss: whether netCDF-4 logging is enabled
 Configure miss: whether netcdf zarr S3 support should be enabled
 Configure miss: whether netcdf zarr S3 support should be enabled
 Configure miss: whether netcdf zarr S3 testing should be enabled
 Configure miss: whether netcdf zarr S3 testing should be enabled
-Configure miss: whether netcdf zarr storage format should be enabled
-Configure miss: whether netcdf zarr storage format should be enabled
 Configure miss: whether parallel I/O for classic files is to be enabled
 Configure miss: whether parallel I/O for classic files is to be enabled
 Configure miss: whether parallel I/O is enabled for netcdf-4
