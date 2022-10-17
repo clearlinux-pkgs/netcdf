@@ -1,2 +1,5 @@
-4.8.1
+4.9.0
+bzip2-dev
 graphviz
+libxml2-dev
+zstd-dev
