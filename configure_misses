@@ -52,12 +52,12 @@ Configure miss: whether and where we should install plugins
 Configure miss: whether and where we should install plugins
 Configure miss: whether benchmarks should be run
 Configure miss: whether benchmarks should be run
-Configure miss: whether byte range support is enabled
-Configure miss: whether byte range support is enabled
-Configure miss: whether dap remote authorization testing should be enabled (default off)
-Configure miss: whether dap remote authorization testing should be enabled (default off)
-Configure miss: whether dap remote testing should be enabled
-Configure miss: whether dap remote testing should be enabled
+Configure miss: whether dap authorization testing should be enabled (default off)
+Configure miss: whether dap authorization testing should be enabled (default off)
+Configure miss: whether dap use of remotetest server should be enabled
+Configure miss: whether dap use of remotetest server should be enabled
+Configure miss: whether dap use of remotetest server should be enabled
+Configure miss: whether dap use of remotetest server should be enabled
 Configure miss: whether large file (> 2GB) tests should be run
 Configure miss: whether large file (> 2GB) tests should be run
 Configure miss: whether libsz library is available
@@ -89,6 +89,8 @@ Configure miss: whether to enable strict null-byte header padding when reading (
 Configure miss: whether to enable strict null-byte header padding when reading (default off)
 Configure miss: whether to fetch some sample HDF4 files from Unidata ftp site to test HDF4 reading (requires wget)
 Configure miss: whether to fetch some sample HDF4 files from Unidata ftp site to test HDF4 reading (requires wget)
+Configure miss: whether use of external servers should be enabled
+Configure miss: whether use of external servers should be enabled
 Configure miss: whether we should attempt to install netcdf-fortran (EXPERIMENTAL)
 Configure miss: whether we should attempt to install netcdf-fortran (EXPERIMENTAL)
 Configure miss: x86_64-generic-linux-gnu-file
