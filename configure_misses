@@ -25,6 +25,8 @@ Configure miss: int64
 Configure miss: int64
 Configure miss: library containing H5Pset_fapl_ros3
 Configure miss: library containing H5Pset_fapl_ros3
+Configure miss: library containing zip_open
+Configure miss: library containing zip_open
 Configure miss: longlong
 Configure miss: longlong
 Configure miss: mpicc option to enable C11 features
@@ -70,8 +72,10 @@ Configure miss: whether nczarr zip support is enabled
 Configure miss: whether nczarr zip support is enabled
 Configure miss: whether netCDF-4 logging is enabled
 Configure miss: whether netCDF-4 logging is enabled
-Configure miss: whether netcdf zarr S3 support should be enabled
-Configure miss: whether netcdf zarr S3 support should be enabled
+Configure miss: whether netcdf NCZarr S3 support should be enabled
+Configure miss: whether netcdf NCZarr S3 support should be enabled
+Configure miss: whether netcdf S3 support should be enabled
+Configure miss: whether netcdf S3 support should be enabled
 Configure miss: whether netcdf zarr S3 testing should be enabled
 Configure miss: whether netcdf zarr S3 testing should be enabled
 Configure miss: whether parallel I/O for classic files is to be enabled
@@ -95,5 +99,3 @@ Configure miss: whether we should attempt to install netcdf-fortran (EXPERIMENTA
 Configure miss: whether we should attempt to install netcdf-fortran (EXPERIMENTAL)
 Configure miss: x86_64-generic-linux-gnu-file
 Configure miss: x86_64-generic-linux-gnu-file
-Configure miss: zip_open in -lzip
-Configure miss: zip_open in -lzip
